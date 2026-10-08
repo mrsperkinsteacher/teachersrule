@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Teachers Rule</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  --bg:#F3F7FA; --surface:#FFFFFF; --surface2:#E9F1F6; --fg:#16203D; --muted:#4F5B7E; --line:#D3DEE7;
+  --navy:#21295C; --accent:#065A82; --teal:#1C7293; --mint:#02C39A;
+  --ok:#0B6B50; --ok-bg:#DDF4EC; --mid:#8A5A00; --mid-bg:#FDF0CC; --hi:#A63F0E; --hi-bg:#FBE3D5;
+  --head:'Bricolage Grotesque','Trebuchet MS',Arial,sans-serif;
+  --body:'Atkinson Hyperlegible','Segoe UI',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1329; --surface:#151D3F; --surface2:#1C2650; --fg:#E9EEF8; --muted:#A9B4D6; --line:#2B3668;
+    --navy:#9FB4FF; --accent:#6CC8EC; --teal:#6CC8EC; --mint:#02C39A;
+    --ok:#7FE3C2; --ok-bg:#12372F; --mid:#F6CF68; --mid-bg:#3A3112; --hi:#F4A279; --hi-bg:#41200F;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1329; --surface:#151D3F; --surface2:#1C2650; --fg:#E9EEF8; --muted:#A9B4D6; --line:#2B3668;
+  --navy:#9FB4FF; --accent:#6CC8EC; --teal:#6CC8EC; --mint:#02C39A;
+  --ok:#7FE3C2; --ok-bg:#12372F; --mid:#F6CF68; --mid-bg:#3A3112; --hi:#F4A279; --hi-bg:#41200F;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.55;padding-inline:16px;padding-block:28px 48px}
+.wrap{max-width:860px;margin-inline:auto}
+.kicker{font-family:var(--head);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 6px}
+h1{font-family:var(--head);font-weight:800;font-size:clamp(1.9rem,5vw,2.7rem);line-height:1.08;margin:0 0 10px;color:var(--navy);text-wrap:balance}
+.lede{font-size:1.1rem;max-width:62ch;margin:0 0 20px;color:var(--fg)}
+.habits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:0 0 24px}
+.habit{background:var(--surface2);border-radius:10px;padding:12px 14px;min-width:0}
+.habit b{display:block;font-family:var(--head);font-size:.98rem;color:var(--navy);margin-bottom:2px}
+.habit span{font-size:.93rem;color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.bar .label{font-size:.85rem;color:var(--muted);margin-right:4px}
+.chip{font:inherit;font-size:.92rem;font-weight:700;border:2px solid var(--line);background:var(--surface);color:var(--fg);border-radius:999px;padding:6px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:var(--bg)}
+.chip:focus-visible,summary:focus-visible,.tool:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.tool{margin-left:auto;font:inherit;font-size:.88rem;background:none;border:none;color:var(--accent);text-decoration:underline;cursor:pointer;padding:6px 2px}
+.list{display:flex;flex-direction:column;gap:10px}
+details.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+details.card[hidden]{display:none}
+summary{list-style:none;cursor:pointer;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:start}
+summary::-webkit-details-marker{display:none}
+.name{font-family:var(--head);font-weight:800;font-size:1.2rem;color:var(--navy);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;min-width:0}
+.type{font-family:var(--body);font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--teal)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.pill{font-size:.8rem;font-weight:700;border-radius:6px;padding:3px 9px;white-space:nowrap}
+.p-ok{background:var(--ok-bg);color:var(--ok)}
+.p-mid{background:var(--mid-bg);color:var(--mid)}
+.p-hi{background:var(--hi-bg);color:var(--hi)}
+.p-time{background:var(--surface2);color:var(--muted)}
+.need{grid-column:1 / -1;font-size:.95rem;color:var(--muted);margin:0}
+.need b{color:var(--fg)}
+.chev{grid-column:1 / -1;font-size:.82rem;color:var(--accent);font-weight:700}
+details[open] .chev .more{display:none}
+details:not([open]) .chev .less{display:none}
+.body{padding:2px 16px 16px;border-top:1px solid var(--line);display:grid;gap:14px}
+.body h3{font-family:var(--head);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:12px 0 4px}
+.body ol,.body ul{margin:0;padding-left:1.3em}
+.body li{margin:0 0 4px}
+.try{background:var(--surface2);border-radius:10px;padding:10px 14px;margin:0}
+.try b{color:var(--navy)}
+.src{font-size:.88rem;color:var(--muted);margin:0}
+a{color:var(--accent)}
+.note{margin:26px 0 0;font-size:.92rem;color:var(--muted);max-width:70ch}
+h2{font-family:var(--head);font-size:1.15rem;color:var(--navy);margin:30px 0 8px}
+.sources li{margin-bottom:6px;font-size:.95rem}
+@media (max-width:520px){ summary{grid-template-columns:1fr} .badges{justify-content:flex-start} }
+@media (prefers-reduced-motion:no-preference){ .chip{transition:background .15s,border-color .15s} }
+
+.t-title{font-family:var(--head);font-weight:800;font-size:clamp(1.7rem,4.6vw,2.4rem);line-height:1.1;margin:0 0 10px;color:var(--navy);text-wrap:balance}
+.site-head{max-width:860px;margin-inline:auto}
+.site-head h1{font-size:clamp(1.6rem,4vw,2rem);margin:0 0 4px}
+.site-head p{margin:0 0 16px;color:var(--muted)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:2px solid var(--line);margin:0 auto 22px;max-width:860px}
+.tab{font:inherit;font-weight:700;font-size:1rem;background:none;border:none;border-bottom:4px solid transparent;margin-bottom:-2px;padding:10px 16px;color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--mint)}
+.tab:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.panel[hidden]{display:none}
+.panel{max-width:860px;margin-inline:auto}
+footer.site{max-width:860px;margin:36px auto 0;font-size:.85rem;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+
+</style>
+</head>
+<body>
+<header class="site-head">
+  <h1>Teachers Rule</h1>
+  <p>Quick reference pages for teachers. New tabs get added over time.</p>
+</header>
+
+<!-- TO ADD A NEW TAB: 1) copy one <button class="tab"> line below and change data-tab and the label.
+     2) copy the <section class="panel"> block, set id="panel-YOURNAME" (same name as data-tab), and put your content inside. -->
+<nav class="tabs" role="tablist" aria-label="Pages">
+  <button class="tab" role="tab" type="button" data-tab="gamify" aria-selected="true">Gamify cheat sheet</button>
+</nav>
+
+<section class="panel" id="panel-gamify" role="tabpanel">
+<p class="kicker">Dear teacher</p>
+  <h2 class="t-title">Gamify cheat sheet</h2>
+  <p class="lede">Eight ways to get every student talking in HSIE. Each one shows the prep time and what to have ready before you open it. Pick one, run it in the time shown, and swap in today's topic.</p>
+
+  <div class="habits" aria-label="Habits that make any of these work">
+    <div class="habit"><b>Give thinking time first</b><span>Ten silent seconds before anyone speaks. More students answer.</span></div>
+    <div class="habit"><b>Draw names at random</b><span>Name sticks or a class-list picker. No one can opt out.</span></div>
+    <div class="habit"><b>Put a starter on the board</b><span>"I think ... because ..." and "I disagree because ..."</span></div>
+  </div>
+
+  <div class="bar" role="group" aria-label="Filter by prep time">
+    <span class="label">Show:</span>
+    <button class="chip" type="button" data-f="all" aria-pressed="true" id="f-all">All 8</button>
+    <button class="chip" type="button" data-f="spot" aria-pressed="false" id="f-spot">On the spot (0 to 2 min)</button>
+    <button class="chip" type="button" data-f="light" aria-pressed="false" id="f-light">Light prep (3 min)</button>
+    <button class="chip" type="button" data-f="prep" aria-pressed="false" id="f-prep">Needs prep (10 min)</button>
+    <button class="tool" type="button" id="toggle-all">Open all</button>
+  </div>
+
+  <div class="list" id="list">
+
+    <details class="card" data-tier="spot">
+      <summary>
+        <div class="name">Places in Ten <span class="type">GAME</span></div>
+        <div class="badges"><span class="pill p-ok">0 min prep</span><span class="pill p-time">5 to 8 min</span></div>
+        <p class="need"><b>You need:</b> nothing. Optional: a list of today's key terms or places on the board.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Run it</h3><ol>
+          <li>Pairs. One student secretly picks a place, term or case study from the lesson and writes it down so it cannot change.</li>
+          <li>The partner has ten yes or no questions to find it, counting out loud.</li>
+          <li>Swap roles.</li>
+          <li>Debrief: which question narrowed it down the most?</li></ol></div>
+        <div><h3>Keep it moving</h3><ul><li>"Is it a place or an idea?" is a strong first question. Say so.</li><li>No naming a guess before question six, so students ask about features first.</li></ul></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> globalisation, undersea cable, container tracking, digital divide, NBN, or a country linked by trade.</p>
+        <p class="src">Adapted from "Towns in Ten" in Games and Stories by Paula Owens, Digimap for Schools (EDINA). The original is a primary map game.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="spot">
+      <summary>
+        <div class="name">Map it from memory <span class="type">GAME</span></div>
+        <div class="badges"><span class="pill p-ok">0 min prep</span><span class="pill p-time">8 to 10 min</span></div>
+        <p class="need"><b>You need:</b> blank paper and two pen colours (a pencil and a coloured pencil works).</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Run it</h3><ol>
+          <li>Books closed. Students draw today's topic as a concept map from memory: the big idea in the middle, branches around it, and a few words on each link.</li>
+          <li>Four minutes, silent.</li>
+          <li>Swap with a partner. Add anything missing in the second colour, or check against notes.</li>
+          <li>Each student counts what they missed. That count is their next revision target.</li></ol></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> "globalisation" in the middle, with branches for trade, travel, communication, culture and risks.</p>
+        <p class="src">Concept mapping from memory is a review activity in Mark Enser, "Applying Rosenshine to the geography classroom", Chartered College of Teaching.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="spot">
+      <summary>
+        <div class="name">Talking Point <span class="type">GAME</span></div>
+        <div class="badges"><span class="pill p-ok">2 min prep</span><span class="pill p-time">6 to 10 min</span></div>
+        <p class="need"><b>You need:</b> one map, photo or graph on the board, a timer, and a mini whiteboard or paper for each group.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Run it</h3><ol>
+          <li>Show the image. Groups of three or four, one scribe and one speaker.</li>
+          <li>Two to three minutes to list as many facts as possible. Each fact must be something you can point to.</li>
+          <li>Speakers read out their lists. A fact scores a point only if no other group has it, so groups cross out duplicates as they hear them.</li>
+          <li>The winning group explains its best fact with evidence from the image.</li></ol></div>
+        <div><h3>Keep it moving</h3><ul><li>Ask for "I can see ... so ..." so facts turn into reasons.</li></ul></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> a submarine cable map, the NBN sector graph, or a photo of a port or airport.</p>
+        <p class="src">Adapted from "Talking Point" in Games and Stories by Paula Owens, Digimap for Schools (EDINA). The original is a primary map game.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="spot">
+      <summary>
+        <div class="name">Paired argument <span class="type">TALK</span></div>
+        <div class="badges"><span class="pill p-ok">2 min prep</span><span class="pill p-time">8 to 10 min</span></div>
+        <p class="need"><b>You need:</b> a decision scenario plus a map or image on the board, and sentence starters written up.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Run it</h3><ol>
+          <li>Show the scenario and the map. Students pair up as A and B.</li>
+          <li>Everyone decides alone for one minute.</li>
+          <li>A defends their decision for one minute using evidence from the map. B tests it: "How do you know?" "What if ...?"</li>
+          <li>Swap with a new scenario, or the same one from the other side.</li>
+          <li>B reports back A's strongest argument to the class.</li></ol></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> where should a new undersea cable come ashore in Australia? Where should a community internet hub go?</p>
+        <p class="src">The idea comes from Mark Enser, "Applying Rosenshine to the geography classroom", Chartered College of Teaching: pupils defend a map-based decision to a partner who tests the reasoning. The steps above are suggested.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="spot">
+      <summary>
+        <div class="name">Whiteboards and names <span class="type">TALK</span></div>
+        <div class="badges"><span class="pill p-ok">2 min prep</span><span class="pill p-time">1 to 2 min per question</span></div>
+        <p class="need"><b>You need:</b> mini whiteboards, markers and erasers (or paper in plastic sleeves), and name sticks or a random name picker.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Run it</h3><ol>
+          <li>Ask the question. Ten seconds of silent thinking.</li>
+          <li>"Three, two, one, show me." Every board goes up at once.</li>
+          <li>Scan the room. Draw a name and ask that student to explain their answer.</li>
+          <li>Draw a second name: "Do you agree or disagree, and why?"</li></ol></div>
+        <div><h3>No boards?</h3><ul><li>Use paper held up, or a thumbs scale. The point is that everyone answers at once.</li></ul></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> "What carries about 99% of international data?" or "Is this an example of trade in goods or services?"</p>
+        <p class="src">Random name selection and mini whiteboards are described in Mark Enser, "Applying Rosenshine to the geography classroom", Chartered College of Teaching.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="light">
+      <summary>
+        <div class="name">Post-it on the map <span class="type">TALK</span></div>
+        <div class="badges"><span class="pill p-mid">3 min prep</span><span class="pill p-time">8 to 10 min</span></div>
+        <p class="need"><b>You need:</b> a map, Venn diagram or continuum on the board or an A3 sheet, plus a sticky note and pen for each student.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Prep (about 3 minutes)</h3><ul><li>Draw a line on the board with the two ends labelled, or print a map. Collect the sticky notes.</li><li>No sticky notes? Torn paper and blu-tack, or drag text boxes on a shared slide.</li></ul></div>
+        <div><h3>Run it</h3><ol>
+          <li>Everyone writes one place or idea on a sticky note and places it on the map or line.</li>
+          <li>Choose three notes. Ask "Why there?" and let the author explain.</li>
+          <li>Anyone may move their own note after hearing the others.</li>
+          <li>Finish with the biggest cluster or the biggest outlier. Why?</li></ol></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> a line from "least connected" to "most connected" for a city, a regional town, a remote community and another country.</p>
+        <p class="src">Post-it notes on maps, Venn diagrams or continua are described in Mark Enser, "Applying Rosenshine to the geography classroom", Chartered College of Teaching.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="prep">
+      <summary>
+        <div class="name">Search and destroy <span class="type">GAME</span></div>
+        <div class="badges"><span class="pill p-hi">10 min prep</span><span class="pill p-time">10 to 12 min</span></div>
+        <p class="need"><b>You need:</b> a short sample answer with 3 to 5 planted mistakes (one per pair, printed or on the board), an answer key for you, and pens.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Prep (about 10 minutes, once)</h3><ul>
+          <li>Write a short answer to a real question from your lesson. Plant three to five common mistakes: a wrong fact, a claim with no evidence, a missing key term, a number that does not add up.</li>
+          <li>Keep a separate answer key. Print one copy per pair, or put it on the slide.</li>
+          <li>Short on time? Ask Claude to draft the answer and key from your lesson notes, then read it yourself before class.</li></ul></div>
+        <div><h3>Run it</h3><ol>
+          <li>Pairs get the answer. Hunt for the mistakes and mark each one.</li>
+          <li>Write the fix next to each mistake.</li>
+          <li>Reveal the key. One point for each mistake found and fixed.</li>
+          <li>Ask: which mistake would you be most likely to make yourself?</li></ol></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> a sector graph description where the angles do not add to 360 and the title is missing, or a paragraph about the digital divide with an unsupported claim.</p>
+        <p class="src">"Search and destroy" is from Mark Enser, "Applying Rosenshine to the geography classroom", Chartered College of Teaching: pupils find and correct deliberately flawed common errors in a sample answer.</p>
+      </div>
+    </details>
+
+    <details class="card" data-tier="prep">
+      <summary>
+        <div class="name">Map jigsaw <span class="type">GAME</span></div>
+        <div class="badges"><span class="pill p-hi">10 min prep</span><span class="pill p-time">10 to 15 min</span></div>
+        <p class="need"><b>You need:</b> a printed map for each group (A3 is best), scissors, and a zip bag or envelope for each group. Laminate to reuse.</p>
+        <span class="chev"><span class="more">Show how to run it</span><span class="less">Hide</span></span>
+      </summary>
+      <div class="body">
+        <div><h3>Prep (about 10 minutes for a class set, reusable)</h3><ul>
+          <li>Print one map per group. Cut each into six to nine pieces along irregular lines.</li>
+          <li>Bag each set. Keep one complete copy on the board as the answer.</li>
+          <li>Laminated sets last for years and can be used for any lesson with a map.</li></ul></div>
+        <div><h3>Run it</h3><ol>
+          <li>Hand out the pieces so each student in the group holds two or three.</li>
+          <li>No showing the pieces. Describe your piece to the group, using the names and features on it.</li>
+          <li>The group builds the map from the descriptions.</li>
+          <li>Check against the answer. Which description helped most?</li></ol></div>
+        <p class="try"><b>Try it in Interconnections and Trade:</b> a world map of shipping routes or submarine cables, or a map of Australia's ports and airports.</p>
+        <p class="src">Adapted from "Jigsaws" in Games and Stories by Paula Owens, Digimap for Schools (EDINA), where pupils describe their square to a partner before the group builds the map. The original is a primary map game.</p>
+      </div>
+    </details>
+
+  </div>
+
+  <p class="note">Prep and class times are my estimates for an experienced teacher. The sources describe each idea in a line or two. The steps, timings and Interconnections and Trade examples are suggestions for you to adapt.</p>
+
+  <h2>Where the ideas come from</h2>
+  <ul class="sources">
+    <li>Mark Enser, "Applying Rosenshine to the geography classroom", Chartered College of Teaching (Early Career Hub). <a href="https://my.chartered.college/?p=5317" target="_blank" rel="noopener">my.chartered.college/?p=5317</a></li>
+    <li>Paula Owens, "Games and Stories: Six quick ideas for Primary activities", Digimap for Schools, EDINA at the University of Edinburgh. <a href="https://digimapforschools.edina.ac.uk/files/resource-hub/downloads/541202_games_and_stories.pdf" target="_blank" rel="noopener">digimapforschools.edina.ac.uk/.../541202_games_and_stories.pdf</a></li>
+  </ul>
+</section>
+
+<footer class="site">Perkins (2026). A private teacher page - please do not post the link publicly.</footer>
+
+<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('details.card'));
+  var chips=[].slice.call(document.querySelectorAll('.chip'));
+  var toggle=document.getElementById('toggle-all');
+  var open=false;
+  function apply(f){
+    chips.forEach(function(c){c.setAttribute('aria-pressed',c.getAttribute('data-f')===f?'true':'false')});
+    cards.forEach(function(c){c.hidden=!(f==='all'||c.getAttribute('data-tier')===f)});
+  }
+  chips.forEach(function(c){c.addEventListener('click',function(){
+    var f=c.getAttribute('data-f'); apply(f);
+    try{localStorage.setItem('gamify-filter',f)}catch(e){}
+  })});
+  toggle.addEventListener('click',function(){
+    open=!open;
+    cards.forEach(function(c){c.open=open});
+    toggle.textContent=open?'Close all':'Open all';
+  });
+  try{var s=localStorage.getItem('gamify-filter'); if(s&&document.querySelector('[data-f="'+s+'"]')) apply(s);}catch(e){}
+})();
+</script>
+<script>
+
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  function show(id){
+    var found=tabs.some(function(t){return t.getAttribute('data-tab')===id});
+    if(!found) id=tabs[0].getAttribute('data-tab');
+    tabs.forEach(function(t){var on=t.getAttribute('data-tab')===id; t.setAttribute('aria-selected',on?'true':'false'); t.tabIndex=on?0:-1;});
+    panels.forEach(function(p){p.hidden=(p.id!=='panel-'+id)});
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){var id=t.getAttribute('data-tab'); show(id); try{history.replaceState(null,'','#'+id)}catch(e){}});
+    t.addEventListener('keydown',function(e){
+      var n=null; if(e.key==='ArrowRight')n=tabs[(i+1)%tabs.length]; if(e.key==='ArrowLeft')n=tabs[(i-1+tabs.length)%tabs.length];
+      if(n){n.focus(); n.click(); e.preventDefault();}
+    });
+  });
+  show((location.hash||'').replace('#',''));
+  window.addEventListener('hashchange',function(){show((location.hash||'').replace('#',''))});
+})();
+
+</script>
+</body>
+</html>
